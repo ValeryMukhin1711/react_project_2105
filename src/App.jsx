@@ -11,12 +11,13 @@ function App() {
     <div>
       <Header />
       
-      
+      <ImageWithText></ImageWithText>
       <Categories></Categories>
-      {/* <ImageWithText></ImageWithText> */}
+      
       <Sale/>
       <Footer />
-      {/* <AddressMap></AddressMap> */}
+      <AddressMap></AddressMap>
+
     </div>
   );
 }

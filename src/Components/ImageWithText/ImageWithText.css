@@ -1,22 +1,29 @@
 .image-container {
-  position: relative;
+  /* position: relative; */
   width: 100%;
   max-width: 1200px;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  height: 300px !important; 
+  /* margin: auto; */
+  /* overflow: hidden; */
+  /* border-radius: 12px; */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+  height: 600px; 
+  background-image: './img.jpg';
 }
 
 .wrapper {
+  width: 100%;
+  max-width: 1200px;
   height: 600px;
+  height: 600px; 
+  background-image: url('./img.jpg');
+  color: white;
   /* border:2px solid red; */
   /* margin-bottom: 10px; */
 }
 
 .background-image {
-  position: absolute;
+
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -30,7 +37,7 @@
   left: 50%; 
   transform: translate(-50%, -50%);
   text-align: center;
-  color: white;
+  
   z-index: 1;
 }
 
