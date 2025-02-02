@@ -19,8 +19,9 @@ const Sale = () => {
         const response = await axios.get("http://localhost:3333/products/all");
         console.log('response.data',response.data)
         console.log('run setSale')
-        console.log('shuffle(response.data',shuffle(response.data))
-        setSale(response.data.slice(0,4));
+        const tmpArr = shuffle(response.data.filter((el) => el.discont_price !== 0))
+        // console.log('shuffle(response.data',shuffle(response.data))
+        setSale(tmpArr);
         console.log('sale',sale)
       } catch (err) {
         setError("Ошибка при загрузке sale");
@@ -32,32 +33,7 @@ const Sale = () => {
     fetchSales();
   },[]);
 
-  // const items_1 = [ 
-  //   {
-  //     img: bridge,
-  //     title: "Decorative forged bridge",
-  //     price: "$500   ̶$̶1̶0̶0̶0̶",
-  //     discount: "-50%",
-  //   },
-  //   {
-  //     img: flowers,
-  //     title: "Flower basket",
-  //     price: "$100   ̶$̶1̶5̶0̶",
-  //     discount: "-34%",
-  //   },
-  //   {
-  //     img: aquarium,
-  //     title: "Aquarium lock",
-  //     price: "$150   ̶$̶2̶0̶0̶",
-  //     discount: "-25%",
-  //   },
-  //   {
-  //     img: secateurs,
-  //     title: "Secateurs",
-  //     price: "$199   ̶$̶2̶4̶0̶",
-  //     discount: "-17%",
-  //   },
-  // ];
+  
 console.log('sale-out',sale)
 const items = sale
   return (
@@ -84,7 +60,7 @@ const items = sale
           <div className="image-container">
             <img src={`http://localhost:3333/${item.image}`} alt={item.title} className="sale-image" />
             <div className="discount-badge">
-              {Math.round(100 - (item.discont_price / item.price) * 100)}%
+              - {Math.round(100 - (item.discont_price / item.price) * 100)}%
             </div> 
           </div>
           <h3 className="sale-item-title">{item.title}</h3>

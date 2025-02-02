@@ -6,8 +6,12 @@ import Categories from './Components/Categories/Categories';
 import Sale from './Components/Sale/Sale';
 import AddressMap from './Components/AddressMap/AddressMap';
 import FirstOrder from './Components/FirstOrder/FirstOrder';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(()=> {
+    document.title = '02_02_github';
+  }, [])
   return (
     <div>
       <Header />
