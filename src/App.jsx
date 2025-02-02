@@ -5,6 +5,7 @@ import ImageWithText from './Components/ImageWithText/ImageWithText';
 import Categories from './Components/Categories/Categories';
 import Sale from './Components/Sale/Sale';
 import AddressMap from './Components/AddressMap/AddressMap';
+import FirstOrder from './Components/FirstOrder/FirstOrder';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       
       <ImageWithText></ImageWithText>
       <Categories></Categories>
+      <FirstOrder></FirstOrder>
       
       <Sale/>
       <Footer />
