@@ -1,30 +1,34 @@
-import './App.css';
-import Header from './Components/Header/Header';
-import Footer from './Components/Footer/Footer';
-import ImageWithText from './Components/ImageWithText/ImageWithText';
-import Categories from './Components/Categories/Categories';
-import Sale from './Components/Sale/Sale';
-import AddressMap from './Components/AddressMap/AddressMap';
-import FirstOrder from './Components/FirstOrder/FirstOrder';
 import { useEffect } from 'react';
+import './App.css';
+import { HomePage } from './Components/HomePage/HomePage';
+import { CategoriesPage } from './Components/CategoriesPage/CategoriesPage';
+import { AllProductsPage } from './Components/AllProductsPage/AllProductsPage';
+import { AllSalePage } from './Components/AllSalePage/AllSalePage';
+import ProductInformation from './Components/ProductInformation/ProductInformation'
+import ShoppingCartPage from './Components/ShoppingCartPage/ShoppingCartPage';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
-  useEffect(()=> {
-    document.title = '02_02_github';
-  }, [])
-  return (
-    <div>
-      <Header />
-      
-      <ImageWithText></ImageWithText>
-      <Categories></Categories>
-      <FirstOrder></FirstOrder>
-      
-      <Sale/>
-      <Footer />
-      <AddressMap></AddressMap>
+  useEffect(() => {
+    document.title = '05_02_9-40';
+  }, []);
 
-    </div>
+  return (
+    <>
+    
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/category" element={<CategoriesPage />} />
+          <Route path="/allproducts" element={<AllProductsPage />} />
+          <Route path="/allsales" element={<AllSalePage />} />
+          <Route path="/shippingcart" element={<ShoppingCartPage />} />
+          <Route path="*" element={<CategoriesPage />} />
+          <Route path="/productinfo" element={<ProductInformation />} />
+        </Routes>
+      </BrowserRouter>
+      
+    </>
   );
 }
 

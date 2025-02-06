@@ -1,6 +1,6 @@
 import React from 'react';
 import './ImageWithText.css';
-import image_1 from './img.jpg';
+// import image_1 from './img.jpg';
 
 const ImageWithText = () => {
   return (
