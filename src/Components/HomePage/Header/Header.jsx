@@ -3,6 +3,8 @@ import "./Header.css";
 import logo from "../../../logo/logo.png";
 import basketIcon from "../../../icon/icons.png";
 import { Link } from "react-router-dom";
+import basket from "../../../store/Basket";
+import { observer } from "mobx-react-lite";
 
 function Header() {
   return (
@@ -19,6 +21,7 @@ function Header() {
 
           <li className="basket-icon">
             <Link to='/shippingcart'>
+            <span>{basket.items.length}</span>
             <img src={basketIcon} alt="Basket Icon" />
             </Link>
           </li>
@@ -28,4 +31,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default observer(Header);

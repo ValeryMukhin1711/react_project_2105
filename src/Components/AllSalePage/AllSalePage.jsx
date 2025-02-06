@@ -5,7 +5,6 @@ import axios from 'axios';
 import './Sale.css';
 import basket from '../../store/Basket';
 
-
 export const AllSalePage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,16 +25,6 @@ export const AllSalePage = () => {
     };
     fetchProducts();
   }, []);
-
-
-  function handleAddButton(item)  {
-
-    // console.log('item.price',item.price)
-    // console.log('item',item)
-
-    basket.addItem(item)
-    console.log('basket.items',basket.items)
-  }
 
 
 
@@ -77,7 +66,7 @@ export const AllSalePage = () => {
                       ${item.price.toFixed(2)}
                     </span>
                   </p> */}
-                   <button onClick={()=> handleAddButton(item)}>AddToCart</button>
+                    <button onClick={()=> basket.addItem(item)}>AddToCart</button>
                   </>
                 ) : (
                   <div className="empty-sale-item"></div>

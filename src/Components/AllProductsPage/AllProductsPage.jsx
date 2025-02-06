@@ -26,14 +26,9 @@ export const AllProductsPage = () => {
     fetchProducts();
   }, []);
 
-  function handleAddButton(item)  {
-
-    // console.log('item.price',item.price)
-    // console.log('item',item)
-
-    basket.addItem(item)
-    console.log('basket.items',basket.items)
-  }
+  // function handleAddButton(item)  {
+  //   basket.addItem(item)
+  // }
 
   const items = products;
   return (
@@ -70,7 +65,9 @@ export const AllProductsPage = () => {
                       ${item.discont_price.toFixed(2)} */}
                     {/* </span> */}
                     <span className="old-price">${item.price.toFixed(2)}</span>
-                    <button onClick={()=> handleAddButton(item)}>AddToCart</button>
+                    {/* <button onClick={()=> handleAddButton(item)}>AddToCart</button> */}
+                    <button onClick={()=> basket.addItem(item)}>AddToCart</button>
+                    
                     {/* // </p> */}
                   </>
                 ) : (
