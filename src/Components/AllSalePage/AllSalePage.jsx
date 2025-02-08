@@ -3,7 +3,11 @@ import Footer from '../HomePage/Footer/Footer';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Sale.css';
-import basket from '../../store/Basket';
+
+import selectedproduct from '../../store/SelectedProduct';
+import { Link } from 'react-router-dom';
+import ShowDetails from '../Buttons/ShowDetails';
+import AddToBasket from '../Buttons/AddToBasket';
 
 export const AllSalePage = () => {
   const [products, setProducts] = useState([]);
@@ -26,8 +30,6 @@ export const AllSalePage = () => {
     fetchProducts();
   }, []);
 
-
-
   const items = products;
   return (
     <>
@@ -44,11 +46,14 @@ export const AllSalePage = () => {
                 {item ? (
                   <>
                     <div className="image-container">
-                      <img
-                        src={`http://localhost:3333/${item.image}`}
-                        alt={item.title}
-                        className="sale-image"
-                      />
+                      <Link to="/productinfo">
+                        <img
+                          src={`http://localhost:3333/${item.image}`}
+                          alt={item.title}
+                          className="sale-image"
+                          onClick={() => selectedproduct.addItem(item)}
+                        />
+                      </Link>
                       <div className="discount-badge">
                         -{' '}
                         {Math.round(
@@ -57,16 +62,10 @@ export const AllSalePage = () => {
                         %
                       </div>
                     </div>
+                    <AddToBasket value={item}/>
                     <h3 className="sale-item-title">{item.title}</h3>
-                    {/* <p className="sale-price">
-                    <span className="new-price">
-                      ${item.discont_price.toFixed(2)}
-                    </span>
-                    <span className="old-price">
-                      ${item.price.toFixed(2)}
-                    </span>
-                  </p> */}
-                    <button onClick={()=> basket.addItem(item)}>AddToCart</button>
+
+                    <ShowDetails value={item} />
                   </>
                 ) : (
                   <div className="empty-sale-item"></div>

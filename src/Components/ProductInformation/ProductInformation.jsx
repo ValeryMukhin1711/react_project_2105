@@ -1,37 +1,86 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-// import "./ProductDetail.css"; // Отдельный CSS-файл
+import Header from '../HomePage/Header/Header';
+import Footer from '../HomePage/Footer/Footer';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const ProductInformation = ({ productId }) => {
-  const [product, setProduct] = useState(null);
+import './Sale.css';
+import selectedproduct from '../../store/SelectedProduct';
+import AddToBasket from '../Buttons/AddToBasket';
+
+export const ProductInformation = () => {
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  console.log('CategoryProductsPage');
   useEffect(() => {
-    axios
-      .get(`http://localhost:3333/products/${productId}`)
-      .then((response) => {
-        setProduct(response.data);
+    const fetchProducts = async () => {
+      try {
+        console.log('selectedproduct', selectedproduct);
+        const response = await axios.get(
+          `http://localhost:3333/products/${selectedproduct.selectedProduct.id}`
+        );
+        console.log('response', response);
+        setProducts(response.data);
+      } catch (err) {
+        setError('Ошибка при загрузке products');
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        setError("Ошибка загрузки продукта");
-        setLoading(false);
-      });
-  }, [productId]);
-
-  if (loading) return <p>Загрузка...</p>;
-  if (error) return <p>{error}</p>;
-  if (!product) return <p>Продукт не найден</p>;
-
+      }
+    };
+    fetchProducts();
+  }, []);
+loading && <h1>Loading</h1>
+  const items = products;
   return (
-    <div className="product-detail">
-      <img src={product.image} alt={product.name} className="product-image" />
-      <h2 className="product-name">{product.name}</h2>
-      <p className="product-price">${product.price}</p>
-      <p className="product-description">{product.description}</p>
-    </div>
+    <>
+      <Header />
+      <div className="sale-container">
+        <div className="sale-content">
+          <div className="sale-header">
+            <h3 className="sale-title">Products detail</h3>
+          </div>
+          <div className="sale-items">
+            {[...items].map((item, index) => (
+              <div key={index} className="sale-item">
+                {item ? (
+                  <>
+                    <div className="image-container">
+                      <img
+                        src={`http://localhost:3333/${item.image}`}
+                        alt={item.title}
+                        className="sale-image"
+                      />
+                 
+                      {/* <div className="discount-badge">
+                      -{' '}
+                      {Math.round(
+                        100 - (item.discont_price / item.price) * 100
+                      )}
+                      %
+                    </div> */}
+                    </div>
+                    <h3 className="sale-item-title">{item.title}</h3>
+              
+                    {item.discont_price &&
+                    <span className="new-price">new price
+                    ${item.discont_price.toFixed(2)}
+                    </span>
+                    }
+                    <span className="old-price">${item.price.toFixed(2)}</span>
+
+                    <p>{selectedproduct.selectedProduct.description}</p>
+                    <AddToBasket value ={item}/>
+                  </>
+                ) : (
+                  <div className="empty-sale-item"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 };
-
-export default ProductInformation;

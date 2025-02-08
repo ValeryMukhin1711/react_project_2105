@@ -7,10 +7,11 @@ import { AllSalePage } from './Components/AllSalePage/AllSalePage';
 import ShoppingCartPage  from './Components/ShoppingCartPage/ShoppingCartPage';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import { CategoryProductsPage } from './Components/CategoryProductsPage/CategoryProductsPage';
-import ProductInformation from './Components/ProductInformation/ProductInformation';
+import { ProductInformation}  from './Components/ProductInformation/ProductInformation';
+
 function App() {
   useEffect(() => {
-    document.title = '05_02_9-40';
+    document.title = '07_02_15-10';
   }, []);
 
   return (
@@ -24,8 +25,7 @@ function App() {
           <Route path="/allsales" element={<AllSalePage />} />
           <Route path="/shippingcart" element={<ShoppingCartPage />} />
           <Route path="/categoryproducts" element={<CategoryProductsPage />} />
-          {/* <Route path="/productinfo" element={<ProductInformation />} /> */}
-
+          <Route path="/productinfo" element={<ProductInformation />} />
           <Route path="*" element={<CategoriesPage />} />
         </Routes>
       </BrowserRouter>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Categories.css";
+import selectedсategory from "../../../store/SelectedCategory";
+import { Link } from "react-router-dom";
 
 // import store from "../../store";
 
@@ -43,14 +45,21 @@ const Categories = () => {
         <div className="categories-images">
           {categories.map((category) => (
             <div key={category.id} className="categories-item">
+              <Link to='/categoryproducts'>
               <img className='img_category'
                 // src={imagesArr[category.id][1]}
                 src={`http://localhost:3333/${category.image}`}
                 alt={category.title}
-                className="categories-image"
-              />
+                className1="categories-image"
+                onClick={()=>selectedсategory.addItem(category)}
+                />
+              </Link>
               <h3 className="categories-text">{category.title}</h3>
+              <Link to='/categoryproducts'>
+              <button onClick={()=>selectedсategory.addItem(category)}>Show more...</button>
+              </Link>
             </div>
+            
           ))}
         </div>
       </div>

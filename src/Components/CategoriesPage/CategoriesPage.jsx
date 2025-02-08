@@ -7,7 +7,6 @@ export function CategoriesPage() {
   return (
     <div>
       <Header />
-
       <Categories />
       <Footer />
     </div>

@@ -4,6 +4,7 @@ import "./Categories.css";
 import selectedсategory from "../../../store/SelectedCategory";
 import { Link } from "react-router-dom";
 
+
 // import store from "../../store";
 
 // const imagesArr = Object.entries(images)

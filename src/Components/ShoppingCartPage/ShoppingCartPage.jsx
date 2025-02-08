@@ -13,6 +13,7 @@ const ShoppingCartPage = () => {
 
 
   const items = basket.items;
+  console.log('items',items)
 
   const totalPrice = (arr)=>{
     let summ = 0
@@ -62,9 +63,9 @@ const ShoppingCartPage = () => {
                     <p className="sale-price">
                     {
                       item.discont_price ? 
-                      <span className="new-price">
+                      <p className="new-price">Sale 
                       ${item.discont_price.toFixed(2)}
-                    </span>: null}
+                    </p>: null}
                     <span className="old-price">
                       ${item.price.toFixed(2)}
                     </span> 

@@ -6,6 +6,10 @@ import axios from 'axios';
 import './Sale.css';
 import basket from '../../store/Basket';
 import selectedсategory from '../../store/SelectedCategory';
+import AddToBasket from '../Buttons/AddToBasket';
+import ShowDetails from '../Buttons/ShowDetails';
+import selectedproduct from '../../store/SelectedProduct';
+import { Link } from 'react-router-dom';
 
 export const CategoryProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -16,7 +20,7 @@ export const CategoryProductsPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        console.log('selectedсategory',selectedсategory)
+        console.log('selectedсategory', selectedсategory);
         const response = await axios.get('http://localhost:3333/products/all');
         console.log('response', response);
         setProducts(response.data);
@@ -32,18 +36,27 @@ export const CategoryProductsPage = () => {
   // function handleAddButton(item)  {
   //   basket.addItem(item)
   // }
-  console.log('selectedсategory.selectCategory',selectedсategory.selectedCategory)
-  const items = products.filter((el)=>el.categoryId === selectedсategory.selectedCategory.id);
-console.log('selectedсategory.selectCategory.id',selectedсategory.selectedCategory.id)
+  console.log(
+    'selectedсategory.selectCategory',
+    selectedсategory.selectedCategory
+  );
+  const items = products.filter(
+    (el) => el.categoryId === selectedсategory.selectedCategory.id
+  );
+  console.log(
+    'selectedсategory.selectCategory.id',
+    selectedсategory.selectedCategory.id
+  );
   return (
     <>
       <Header />
       <div className="sale-container">
         <div className="sale-content">
           <div className="sale-header">
-            <h1 className="sale-title">Products in category {
-            selectedсategory.selectedCategory.title}</h1>
-            {/* <button className="sale-button">All Products</button> */}
+            <h1 className="sale-title">
+              Products in category {selectedсategory.selectedCategory.title}
+            </h1>
+         
           </div>
           <div className="sale-items">
             {[...items].map((item, index) => (
@@ -51,31 +64,24 @@ console.log('selectedсategory.selectCategory.id',selectedсategory.selectedCate
                 {item ? (
                   <>
                     <div className="image-container">
+                      <Link></Link>
                       <img
                         src={`http://localhost:3333/${item.image}`}
                         alt={item.title}
                         className="sale-image"
+                        onClick={() => selectedproduct.addItem(item)}
                       />
-                      {/* <div className="discount-badge">
-                      -{' '}
-                      {Math.round(
-                        100 - (item.discont_price / item.price) * 100
-                      )}
-                      %
-                    </div> */}
-                    </div>
-                    <h3 className="sale-item-title">{item.title}</h3>
-                    {/* <p className="sale-price">
-                    <span className="new-price">
-                      ${item.discont_price.toFixed(2)} */}
-                    {/* </span> */}
-                    <span className="old-price">${item.price.toFixed(2)}</span>
-                    {/* <button onClick={()=> handleAddButton(item)}>AddToCart</button> */}
-                    <button onClick={() => basket.addItem(item)}>
-                      AddToCart
-                    </button>
 
-                    {/* // </p> */}
+                    </div>
+                    <AddToBasket item={item} />
+                    <h3 className="sale-item-title">{item.title}</h3>
+                    {item.discont_price && (
+                      <span className="new-price">
+                        ${item.discont_price.toFixed(2)}
+                      </span>
+                    )}
+                    <span className="old-price">${item.price.toFixed(2)}</span>
+                    <ShowDetails value={item} />
                   </>
                 ) : (
                   <div className="empty-sale-item"></div>
