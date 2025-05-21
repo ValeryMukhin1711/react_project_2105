@@ -1,0 +1,15 @@
+.show-details {
+    background: #F26D22;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+  
+.show-details:hover:hover {
+    background: #424436;
+    color: white; 
+}

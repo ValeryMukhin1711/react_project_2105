@@ -1,0 +1,128 @@
+.sale-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .sale-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .sale-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  
+  .sale-title {
+    font-weight: 700;
+    font-size: 64px;
+    margin: 0;
+  }
+  
+  .sale_items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+  
+  .sale-item {
+    flex: 1 1 calc(25% - 16px);
+    max-width: 316px;
+    text-align: center;
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sale-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  .sale-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .sale-item:hover .sale-image {
+    transform: scale(1.05);
+  }
+  
+  .discount-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px; 
+    background: #F26D22; 
+    color: #FFFFFF; 
+    font-size: 20px; 
+    line-height: 26px;
+    padding: 4px 8px;
+    text-align: center;
+    width: 52px;
+    height: 26px;
+    border-radius: var(--radiussmall, 8px); 
+  }
+  
+  .sale-item-title {
+    font-size: 18px;
+    /* font-weight: bold; */
+    margin: 12px 0 4px;
+  }
+  
+  .sale-price {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .new-price {
+    color: #424436;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 44px;
+  }
+  
+  .old-price {
+    text-decoration: line-through;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    margin-left: 10px;
+    color: #8b8b8b;
+  }
+  
+  @media (max-width: 768px) {
+    .sale-title {
+      font-size: 48px;
+    }
+  
+    .sale-item {
+      flex: 1 1 calc(50% - 16px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .sale-title {
+      font-size: 32px;
+    }
+  
+    .sale-item {
+      flex: 1 1 100%;
+    }
+  }

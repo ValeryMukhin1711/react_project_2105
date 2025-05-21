@@ -1,13 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import StoreContext from "./Components/StoreContext";
+import { categoryStore } from "./State/CategoryStore";
+import "./styles/common.css";
+import "./styles/reset.css";
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  
+  <StoreContext.Provider value={{ categoryStore }}>
     <App />
-  
+  </StoreContext.Provider>
 );
-
-
